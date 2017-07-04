@@ -1,32 +1,23 @@
 
-@import "../../style/mixins/caret";
-
-$color-orange: orange;
-$color-blue: dodgerblue;
-$color-purple: mediumpurple;
-$color-grey: grey;
+@import "../../style/mixins";
 
 
 .container {
 
-    &:hover {
-
-    }
-
     li {
         position: relative;
+        @include paddingVertical(1px);
 
         &:hover {
-            background-color: blue;
+            background-color: #2a3043;
         }
     }
-
 }
 
 .caret {
     position: absolute;
     top: 7px;
-    left: -15px;
+    //left: 5px;
     color: #aaa;
     cursor: pointer;
     @include caret-bottom(5px);
@@ -34,36 +25,36 @@ $color-grey: grey;
 
 .collapsed .caret {
     top: 4px;
-    left: -12px;
+    //left: 7.5px;
     @include caret-right(5px);
 }
 
 .symbol {
-    color: $color-orange;
-    //margin-right: 10px;
-    font-weight: bold;
-}
+    color: #c87832;
+    //font-weight: bold;
 
-.prop {
-    padding-left: 40px;
+    &.colon {
+        margin-right: 10px;
+    }
 }
 
 .key {
-    //color: $color-purple;
+    color: #d17bf1;
 }
 
 .boolean, .null {
-    color: $color-orange;
+    color: #c87832;
 }
 
 .number {
-    color: $color-blue;
+    color: #6897bb;
 }
 
 .string {
-    color: $color-purple;
+    //color: #d96629;
+    color: #6a8759;
 }
 
-.undefined {
-    color: $color-grey;
+.undefined, .summary {
+    color: #747772;
 }
