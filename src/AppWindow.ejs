@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>RequestTestClient</title>
+    </head>
+    <body>
+
+        <div id="root" ></div>
+
+        <% if(env === 'production') {%>
+            <!--Require bundle of production webpack-->
+            <script>require('./renderer.js');</script>
+        <% } else {%>
+            <script src="http://localhost:8080/bundle.js" ></script>
+        <% }%>
+
+    </body>
+</html>

@@ -1,0 +1,69 @@
+
+@import "../../style/mixins/caret";
+
+$color-orange: orange;
+$color-blue: dodgerblue;
+$color-purple: mediumpurple;
+$color-grey: grey;
+
+
+.container {
+
+    &:hover {
+
+    }
+
+    li {
+        position: relative;
+
+        &:hover {
+            background-color: blue;
+        }
+    }
+
+}
+
+.caret {
+    position: absolute;
+    top: 7px;
+    left: -15px;
+    color: #aaa;
+    cursor: pointer;
+    @include caret-bottom(5px);
+}
+
+.collapsed .caret {
+    top: 4px;
+    left: -12px;
+    @include caret-right(5px);
+}
+
+.symbol {
+    color: $color-orange;
+    //margin-right: 10px;
+    font-weight: bold;
+}
+
+.prop {
+    padding-left: 40px;
+}
+
+.key {
+    //color: $color-purple;
+}
+
+.boolean, .null {
+    color: $color-orange;
+}
+
+.number {
+    color: $color-blue;
+}
+
+.string {
+    color: $color-purple;
+}
+
+.undefined {
+    color: $color-grey;
+}

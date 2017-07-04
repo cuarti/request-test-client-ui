@@ -1,0 +1,37 @@
+
+@import "../../style/mixins/caret";
+
+
+.container {
+    padding-left: 20px;
+
+    &:hover {
+        background-color: #333;
+    }
+}
+
+.collapsable {
+    cursor: pointer;
+}
+
+.caret {
+    $size: 5px;
+
+    position: relative;
+    left: -15px;
+    color: #aaa;
+
+    @include caret-bottom($size);
+
+    &.collapsed {
+        @include caret-right($size);
+    }
+}
+
+.box {
+    color: red;
+
+    &.collapsed {
+        display: none;
+    }
+}
