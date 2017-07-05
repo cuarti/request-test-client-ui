@@ -3,7 +3,7 @@ import * as React from 'react';
 import {Component} from 'react';
 import {request, Methods} from '@agama/http';
 
-import {Bind} from '../util/Bind';
+import {Bind} from '../lib/util/Bind';
 import {JsonPreview} from './previews/JsonPreview';
 
 

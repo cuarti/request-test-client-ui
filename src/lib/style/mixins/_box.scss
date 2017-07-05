@@ -1,0 +1,53 @@
+
+@import 'vendor';
+
+
+@mixin margin-vertical($margin) {
+    margin-top: $margin;
+    margin-bottom: $margin;
+}
+
+@mixin margin-horizontal($margin) {
+    margin-right: $margin;
+    margin-left: $margin;
+}
+
+@mixin padding-vertical($padding) {
+    padding-top: $padding;
+    padding-bottom: $padding;
+}
+
+@mixin padding-horizontal($padding) {
+    padding-right: $padding;
+    padding-left: $padding;
+}
+
+@mixin border-vertical($border) {
+    border-top: $border;
+    border-bottom: $border;
+}
+
+@mixin border-horizontal($border) {
+    border-right: $border;
+    border-left: $border;
+}
+
+@mixin border-top-radius($radius) {
+    @include border-top-right-radius($radius);
+    @include border-top-left-radius($radius);
+}
+
+@mixin border-right-radius($radius) {
+    @include border-top-right-radius($radius);
+    @include border-bottom-right-radius($radius);
+}
+
+@mixin border-bottom-radius($radius) {
+    @include border-bottom-right-radius($radius);
+    @include border-bottom-left-radius($radius);
+}
+
+@mixin border-left-radius($radius) {
+    @include border-top-left-radius($radius);
+    @include border-bottom-left-radius($radius);
+}

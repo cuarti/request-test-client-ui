@@ -1,0 +1,12 @@
+
+@import 'size';
+
+
+@mixin caret($size: 4px, $rotation: 0) {
+    display: inline-block;
+    border-top: $size dashed;
+    border-right: $size solid transparent;
+    border-left: $size solid transparent;
+    vertical-align: middle;
+    @include square($size);
+}

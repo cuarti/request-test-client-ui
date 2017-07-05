@@ -1,12 +1,12 @@
 
-@import "../../style/mixins";
+@import "../../lib/style/mixins";
 
 
 .container {
 
     li {
         position: relative;
-        @include paddingVertical(1px);
+        @include padding-vertical(1px);
 
         &:hover {
             background-color: #2a3043;
@@ -17,17 +17,9 @@
 .caret {
     position: absolute;
     top: 7px;
-    //left: 5px;
     color: #aaa;
-    cursor: pointer;
-    @include caret-bottom(5px);
 }
 
-.collapsed .caret {
-    top: 4px;
-    //left: 7.5px;
-    @include caret-right(5px);
-}
 
 .symbol {
     color: #c87832;

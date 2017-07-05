@@ -30,22 +30,26 @@ module.exports = {
 
     module: {
         rules: [
-            {
-                test: /\.js$/,
-                use: ['babel-loader', 'source-map-loader'],
-                exclude: /node_modules/
-            },
+            // {
+            //     test: /\.js$/,
+            //     use: ['babel-loader', 'source-map-loader'],
+            //     exclude: /node_modules/
+            // },
             {
                 test: /\.tsx?$/,
                 use: ['awesome-typescript-loader']
             },
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader?modules'],
-            },
+            // {
+            //     test: /\.css$/,
+            //     use: ['style-loader', 'css-loader?modules'],
+            // },
             {
                 test: /\.scss$/,
-                loaders: ['style-loader', 'css-loader?modules&localIdentName=[name]-[local]-[hash:base64:3]', 'sass-loader']
+                loaders: [
+                    'style-loader',
+                    'css-loader?modules&camelCase&localIdentName=[name]-[local]-[hash:base64:3]',
+                    'sass-loader'
+                ]
             },
         ],
     },

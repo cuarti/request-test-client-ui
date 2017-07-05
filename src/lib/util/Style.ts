@@ -17,7 +17,7 @@ export module Style {
             classNames = Object.keys(classNames).filter(k => classNames[k]);
         }
 
-        return classNames.filter(c => c).join(' ');
+        return classNames.filter(c => typeof c === 'string').join(' ');
     }
 
 }

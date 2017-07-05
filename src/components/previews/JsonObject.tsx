@@ -2,8 +2,9 @@
 import * as React from 'react';
 import {Component} from 'react';
 
-import {Style} from '../../util/Style';
-import {Bind} from '../../util/Bind';
+import {Bind} from '../../lib/util/Bind';
+import {Style} from '../../lib/util/Style';
+import {ToggleCaret} from '../../lib/components/basic/ToggleCaret';
 
 const style = require('./JsonObject.scss');
 
@@ -56,7 +57,10 @@ export class JsonObject extends Component<JsonObjectProps, JsonObjectState> {
 
                 <li style={{paddingLeft: this.props.deep * 20}} onClick={this.toggle} >
 
-                    <span className={style.caret} style={{left: (this.props.deep - 1) * 20 + 5}} />
+                    <ToggleCaret
+                        className={style.caret}
+                        style={{left: (this.props.deep - 1) * 20 + 5}}
+                        onToggle={this.toggle} />
 
                     {...(this.props.label && [
                         <span key="key" className={typeof this.props.label === 'string' ? style.key : style.number} >
@@ -87,7 +91,11 @@ export class JsonObject extends Component<JsonObjectProps, JsonObjectState> {
 
                 <li style={{paddingLeft: this.props.deep * 20}} >
 
-                    <span className={style.caret} style={{left: (this.props.deep - 1) * 20 + 7.5}} />
+                    <ToggleCaret
+                        className={style.caret}
+                        style={{left: (this.props.deep - 1) * 20 + 5}}
+                        closed
+                        onToggle={this.toggle} />
 
                     {...(this.props.label && [
                         <span key="key" className={typeof this.props.label === 'string' ? style.key : style.number} >

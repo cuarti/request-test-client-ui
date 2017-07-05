@@ -1,0 +1,9 @@
+
+
+.toggle-caret {
+    transition: ease transform .4s;
+
+    &.collapsed {
+        transform: rotate(-90deg);
+    }
+}

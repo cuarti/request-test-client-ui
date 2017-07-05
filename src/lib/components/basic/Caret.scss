@@ -1,0 +1,19 @@
+
+@import '../../../lib/style/mixins';
+
+
+.caret {
+    cursor: pointer;
+    @include caret(5px);
+}
+
+
+//.caret {
+//    position: absolute;
+//    top: 7px;
+//    color: #aaa;
+//}
+//
+//.collapsed .caret {
+//    transform: rotate(-90deg);
+//}
