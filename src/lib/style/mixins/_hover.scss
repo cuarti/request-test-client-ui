@@ -21,8 +21,17 @@
     }
 }
 
+@mixin focus-active {
+    &:focus,
+    &:active {
+        @content;
+    }
+}
+
 @mixin hover-focus-active {
-    &:hover, &:focus, &:active {
+    &:hover,
+    &:focus,
+    &:active {
         @content;
     }
 }

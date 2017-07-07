@@ -7,16 +7,16 @@ import {Bind} from '../../util/Bind';
 import {Style} from '../../util/Style';
 import {StyledProps} from './Styled';
 
-const styles = require('./Caret.scss');
+const styles = require('./Button.scss');
 
 
-export interface CaretProps extends StyledProps {
+export interface ButtonProps extends StyledProps {
     onClick?: () => void;
 }
 
-export class Caret extends Component<CaretProps> {
+export class Button extends Component<ButtonProps> {
 
-    public constructor(props?: CaretProps, context?: any) {
+    public constructor(props?: ButtonProps, context?: any) {
         super(props, context);
     }
 
@@ -32,9 +32,13 @@ export class Caret extends Component<CaretProps> {
     public render(): JSX.Element {
 
         return (
-            <span className={Style.classNames(styles.caret, this.props.className)}
-                  style={this.props.style || {}}
-                  onClick={this.onClick} />
+            <button className={Style.classNames(styles.button, this.props.className)}
+                    style={this.props.style || {}}
+                    onClick={this.onClick} >
+
+                {this.props.children}
+
+            </button>
         );
     }
 

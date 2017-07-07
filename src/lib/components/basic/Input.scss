@@ -1,0 +1,24 @@
+
+@import '../../../lib/style/mixins';
+
+
+$black: #222;
+
+.input {
+    background-color: #fafafa;
+    padding: 6px 12px;
+    border: none;
+    @include border-radius(3px);
+    @include box-shadow(0 0 3px rgba($black, .25));
+    transition: ease all .5s;
+
+    @include hover {
+        @include box-shadow(0 0 4px rgba($black, .4));
+    }
+
+    @include focus-active {
+        outline: none;
+        @include box-shadow(0 0 5px rgba($black, .6));
+    }
+
+}

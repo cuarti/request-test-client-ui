@@ -1,0 +1,10 @@
+
+@mixin vertical-center($parentDisplay: table) {
+    display: $parentDisplay;
+
+    > * {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+}

@@ -2,10 +2,11 @@
 import * as React from 'react';
 import {Component} from 'react';
 
-import {StyledProps} from './Styled';
-import {Toggle, ToggleProps, ToggleState} from './Toggle';
+import {call} from '../../types/function';
 import {Bind} from '../../util/Bind';
 import {Style} from '../../util/Style';
+import {StyledProps} from './Styled';
+import {Toggle, ToggleProps, ToggleState} from './Toggle';
 import {Caret} from './Caret';
 
 const styles = require('./ToggleCaret.scss');
@@ -41,19 +42,22 @@ export class ToggleCaret extends Component<ToggleCaretProps, ToggleCaretState> i
     public toggle(open: boolean = !this.state.open): void {
 
         this.setState({open}, () => {
-            if(typeof this.props.onToggle === 'function') {
-                this.props.onToggle(open);
-            }
+            call(this.props.onToggle, open);
         });
     }
 
     public render(): JSX.Element {
 
+        let classNames = Style.classNames(
+            styles.toggleCaret,
+            this.state.open || styles.collapsed,
+            this.props.className
+        );
+
         return (
-            <Caret
-                className={Style.classNames(styles.toggleCaret, this.state.open || styles.collapsed, this.props.className)}
-                style={this.props.style || {}}
-                onClick={this.toggle} />
+            <Caret className={classNames}
+                   style={this.props.style || {}}
+                   onClick={this.toggle} />
         );
     }
 

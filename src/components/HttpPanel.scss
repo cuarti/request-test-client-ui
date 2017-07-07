@@ -1,0 +1,17 @@
+
+@import '../style/variables';
+
+
+.http-panel {
+
+    .bar {
+        background-color: $color-primary;
+        padding: 15px;
+
+        > * + * {
+            margin-left: 15px;
+        }
+
+    }
+
+}
