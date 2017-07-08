@@ -39,7 +39,6 @@
         top: 31px;
         background-color: #fafafa;
         max-height: 0;
-        margin-top: 3px;
         @include border-radius(3px);
         @include box-shadow(0 0 3px rgba($black, .25));
         overflow: hidden;

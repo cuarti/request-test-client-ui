@@ -17,16 +17,37 @@ export interface InputProps extends StyledProps {
     defaultValue?: any;
     value?: any;
     placeholder?: string;
+    title?: string;
     onChange?: (data: any) => void;
 }
 
-export class Input extends Component<InputProps> {
+export interface InputState {
+    value?: any;
+}
+
+export class Input extends Component<InputProps, InputState> {
 
     private type: InputType;
 
     public constructor(props?: InputProps, context?: any) {
         super(props, context);
+
         this.type = props.type || 'text';
+
+        this.state = {value: this.props.defaultValue || this.props.value};
+    }
+
+    public componentWillReceiveProps(nextProps: InputProps): void {
+
+        // console.log(nextProps.value, this.state.value, nextProps.value && nextProps.value !== this.state.value);
+        // if(nextProps.value !== this.state.value) {
+        //     console.log('TRUE');
+        //     this.setState({value: nextProps.value});
+        // }
+
+        if(this.state.value !== !nextProps.value) {
+            this.setState({value: nextProps.value})
+        }
     }
 
     private parse(data: string): any {
@@ -35,7 +56,9 @@ export class Input extends Component<InputProps> {
 
     @Bind()
     private onChange(event: any): void {
-        call(this.props.onChange, this.parse(event.target.value));
+
+        let {value} = event.target;
+        this.setState({value}, () => call(this.props.onChange, this.parse(value)));
     }
 
     public render(): JSX.Element {
@@ -45,6 +68,8 @@ export class Input extends Component<InputProps> {
                    className={Style.classNames(styles.input, this.props.className)}
                    style={this.props.style || {}}
                    placeholder={this.props.placeholder}
+                   title={this.props.title}
+                   value={this.state.value || ''}
                    onChange={this.onChange} />
         );
     }

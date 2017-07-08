@@ -1,0 +1,37 @@
+
+@import '../../style/variables';
+@import '../../lib/style/mixins';
+
+
+.bar {
+    display: inline-flex;
+    background-color: $white-dark;
+    width: 100%;
+    padding: 7px 10px;
+
+    > * + * {
+        margin-left: 10px;
+    }
+
+}
+
+.method {
+    width: 100px;
+}
+
+.protocol {
+    width: 80px;
+}
+
+.port {
+    width: 85px;
+}
+
+.path {
+    flex-grow: 1;
+}
+
+.button {
+    color: $white;
+    @include button-variant($color-primary);
+}

@@ -4,6 +4,7 @@ import {Component} from 'react';
 
 import {isNumber, isUndefined} from '../../types/validation';
 import {call} from '../../types/function';
+import {isObject} from '../../types/validation';
 import {Bind} from '../../util/Bind';
 import {Style} from '../../util/Style';
 import {StyledProps} from './Styled';
@@ -16,14 +17,15 @@ const styles = require('./Select.scss');
 //TODO: Abstraer y moverlo a otro sitio
 export interface LabeledValue<T = any> {
     label: string;
-    value: T;
+    value?: T;
 }
 
 export interface SelectProps extends StyledProps, ToggleProps {
-    options: LabeledValue[];
+    options: (LabeledValue | string)[];
     defaultValue?: any;
     defaultIndex?: number;
     // disabled?: boolean;
+    title?: string;
     onChange?: (value: any) => void;
 }
 
@@ -34,11 +36,15 @@ export interface SelectState extends ToggleState {
 //TODO: Crear Select > DropdownButton > Dropdown
 export class Select extends Component<SelectProps, SelectState> implements Toggle {
 
+    private options: LabeledValue[];
+
     public constructor(props?: SelectProps, context?: any) {
         super(props, context);
 
+        this.options = this.prepareOptions();
+
         this.state = {
-            value: this.initDefaultValue(),
+            value: this.prepareDefaultValue(),
             open: false
         };
     }
@@ -56,21 +62,28 @@ export class Select extends Component<SelectProps, SelectState> implements Toggl
         this.setState({open});
     }
 
-    private initDefaultValue(): any {
+    private prepareOptions(): LabeledValue[] {
+
+        return this.props.options.every(o => isObject(o))
+            ? (this.props.options as LabeledValue[]).map(({label, value}) => ({label, value: value || label}))
+            : (this.props.options as string[]).map(label => ({label, value: label}));
+    }
+
+    private prepareDefaultValue(): any {
 
         if(!isUndefined(this.props.defaultValue)) {
             return this.props.defaultValue;
         }
 
         let index = isNumber(this.props.defaultIndex) ? this.props.defaultIndex : 0;
-        let option = this.props.options[index];
+        let option = this.options[index];
 
         return option && option.value;
     }
 
     private getCurrentLabel(): string {
 
-        let option = this.props.options.find(o => o.value === this.state.value);
+        let option = this.options.find(o => o.value === this.state.value);
         return option && option.label;
     }
 
@@ -101,6 +114,7 @@ export class Select extends Component<SelectProps, SelectState> implements Toggl
         return (
             <div className={Style.classNames(styles.select, this.props.className)}
                  style={this.props.style || {}}
+                 title={this.props.title}
                  tabIndex={0}
                  onBlur={this.onBlur} >
                 {/*disabled={this.props.disabled} >*/}
@@ -120,7 +134,7 @@ export class Select extends Component<SelectProps, SelectState> implements Toggl
                 </div>
 
                 <ul className={Style.classNames(styles.dropdown, this.state.open && styles.open)} >
-                    {this.props.options.map(this.renderOption, this)}
+                    {this.options.map(this.renderOption, this)}
                 </ul>
 
             </div>

@@ -1,0 +1,14 @@
+
+
+@mixin button-variant($color) {
+    background-color: $color;
+
+    @include hover {
+        background-color: darken($color, 5%);
+    }
+
+    @include focus-active {
+        background-color: darken($color, 10%);
+    }
+
+}
