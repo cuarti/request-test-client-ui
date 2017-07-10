@@ -1,0 +1,31 @@
+
+@import '../../style/mixins';
+
+
+.dropdown {
+    background-color: #fafafa;
+    max-height: 0;
+    margin-top: 3px;
+    @include border-radius(3px);
+    @include box-shadow(0 0 3px rgba(#000, .25));
+    overflow-y: auto;
+    @include transition(ease max-height .75s);
+
+    &.open {
+        max-height: 250px;
+    }
+
+    //&::before {
+    //    position: absolute;
+    //    top: -8px;
+    //    left: calc(50% - 6px);
+    //    color: #fafafa;
+    //    width: 0;
+    //    height: 0;
+    //    border-bottom: 8px dashed;
+    //    border-right: 6px solid transparent;
+    //    border-left: 6px solid transparent;
+    //    content: '';
+    //}
+
+}
